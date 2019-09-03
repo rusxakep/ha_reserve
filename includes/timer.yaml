@@ -1,0 +1,36 @@
+  heater:
+    duration: '01:00:00'
+    
+  humidifier:
+    duration: '01:00:00'
+
+  camphoto:
+    duration: '00:03:00'
+    
+  toilet:
+    duration: '00:10:00'
+    
+  toilet_v:
+    duration: '00:10:00'
+    
+  laundry:
+    duration: '00:10:00'
+
+  bathroom:
+    duration: '00:10:00'
+
+  bathroom_light:
+    duration: '00:10:00'
+    
+  entrance:
+    duration: '00:05:00'
+
+  corridor:
+    duration: '00:05:00'
+    
+  kitchen:
+    duration: '00:30:00'
+    
+  backup:
+    duration: '00:15:00'
+

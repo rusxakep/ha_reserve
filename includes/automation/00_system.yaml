@@ -1,0 +1,20 @@
+- alias: 00_start
+  initial_state: true
+  trigger:
+  - platform: homeassistant
+    event: start
+  action:    
+    - service: notify.telegram
+      data:
+        title: 'Отчет'
+        message: "Khadas VIM на связи и статус систем в норме, время - {{ states('sensor.time_date') }}"
+
+
+- alias: 00_backup_everyday
+  initial_state: true
+  trigger:
+    - platform: time
+      at: '04:00:00'
+  action:
+    - service: script.turn_on
+      entity_id: script.ha_backup

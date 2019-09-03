@@ -1,0 +1,99 @@
+- alias: 911_orange_70_lost
+  initial_state: true
+  trigger:
+   platform: state
+   entity_id: sensor.main_state
+   to: 'unavailable'
+  action:
+    - service: notify.telegram
+      data:
+        message: "Потеря связи с основным сервером, Raspberry Pi 3 B+ - {{ states('sensor.time_date') }} ."
+
+- alias: 911_orange_70_online
+  initial_state: true
+  trigger:
+   platform: state
+   entity_id: sensor.main_state
+   from: 'unavailable'
+  action:
+    - service: notify.telegram
+      data:
+        message: "Связь с основным сервером, Raspberry Pi 3 B+ восстановлена в - {{ states('sensor.time_date') }} ."
+        
+- alias: 911_scenario_on
+  initial_state: true
+  trigger:
+   - platform: state
+     entity_id: sensor.main_scenario_group
+     to: 'off'
+   - platform: state
+     entity_id: sensor.main_scenario_group
+     to: 'unavailable'
+  condition:
+    - condition: state
+      entity_id: group.scenario
+      state: 'off'     
+  action:
+    - service: notify.telegram
+      data:
+        message: "Бытовые сценарии на Raspberry Pi 3 B+ отключены в - {{ states('sensor.time_date') }} . Включение сценариев на резервном сервере"
+    - service: homeassistant.turn_on
+      entity_id:
+         - group.scenario
+         
+- alias: 911_scenario_off
+  initial_state: true
+  trigger:
+   platform: state
+   entity_id: sensor.main_scenario_group
+   to: 'on'
+  condition:
+    - condition: state
+      entity_id: group.scenario
+      state: 'on'     
+  action:
+    - service: notify.telegram
+      data:
+        message: "Бытовые сценарии на Raspberry Pi 3 B+ включены в - {{ states('sensor.time_date') }} . Отключение сценариев на резервном сервере"
+    - service: homeassistant.turn_off
+      entity_id:
+         - group.scenario
+
+- alias: 911_heater_on
+  initial_state: true
+  trigger:
+   - platform: state
+     entity_id: sensor.main_heater_group
+     to: 'off'
+   - platform: state
+     entity_id: sensor.main_heater_group
+     to: 'unavailable'
+  condition:
+    - condition: state
+      entity_id: group.heater
+      state: 'off'     
+  action:
+    - service: notify.telegram
+      data:
+        message: "Сценарии бойлера на Raspberry Pi 3 B+ отключены в - {{ states('sensor.time_date') }} . Включение сценариев на резервном сервере"
+    - service: homeassistant.turn_on
+      entity_id:
+         - group.heater
+         
+- alias: 911_heater_off
+  initial_state: true
+  trigger:
+   platform: state
+   entity_id: sensor.main_heater_group
+   to: 'on'
+  condition:
+    - condition: state
+      entity_id: group.heater
+      state: 'on'     
+  action:
+    - service: notify.telegram
+      data:
+        message: "Сценарии бойлера на Raspberry Pi 3 B+ включены в - {{ states('sensor.time_date') }} . Отключение сценариев на резервном сервере"
+    - service: homeassistant.turn_off
+      entity_id:
+         - group.heater

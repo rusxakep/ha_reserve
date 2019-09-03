@@ -1,0 +1,54 @@
+####################  PHILIPS  ####################
+
+## Кухня
+  - platform: xiaomi_miio
+    name: philips_04_ceiling
+    host: 192.168.0.117 
+    token: f73f6c18ac3fd594c2ff3dfae32bb20f
+
+## Гостиная
+  - platform: xiaomi_miio    
+    name: philips_05_bedside
+    host: 192.168.0.118
+    token: 1b58a63916d95ba59607f36065d5f6e3
+    model: philips.light.moonlight
+
+## Детская Д    
+  - platform: xiaomi_miio    
+    name: philips_07_ceiling
+    host: 192.168.0.119 
+    token: d3388c79d4c6c0709da9c5361776fa1f
+    
+ 
+#  - platform: xiaomi_miio    
+#    name: philips_test_ceiling
+#    host: 192.168.0.172 
+#    token: 90683d36ec7e044c62a53ffa96a80da8
+#    model: philips.light.bulb
+
+####################  SWITCH  ####################    
+
+## Санузел
+  - platform: switch
+    name: aqara_02_ceiling
+    entity_id: switch.wall_switch_158d00014a1a55
+
+## Кухня
+  - platform: switch
+    name: aqara_04_strip
+    entity_id: switch.wall_plug_158d0001d35bc0
+
+## Гостиная    
+  - platform: switch
+    name: aqara_05_wall
+    entity_id: switch.wall_switch_left_158d00015723f1
+    
+## Детская Д
+  - platform: switch
+    name: xiaomi_07_table
+    entity_id: switch.switch_07_table
+
+## Детская А    
+  - platform: switch
+    name: aqara_08_ceiling
+    entity_id: switch.wall_switch_158d00014a1abd

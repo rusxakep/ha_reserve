@@ -1,0 +1,14 @@
+- alias: 0000-Test
+  initial_state: false
+  trigger:
+## Выключатель на входе в комнату - правая кнопка
+  - platform: event
+    event_type: xiaomi_aqara.click
+    event_data:
+      entity_id: binary_sensor.wall_switch_158d00010b5aee
+      click_type: single 
+  action:
+  - service: notify.telegram
+    data:
+      message: "Балконный светильник - {{ states('light.66633530807d3a766432') }}"
+      
